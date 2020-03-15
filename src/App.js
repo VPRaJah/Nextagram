@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
-function App() {
+import Homepage from "./pages/Homepage";
+import MyProfilePage from "./pages/MyProfilePage";
+import GeneralProfilePg from "./pages/GeneralProfilePg";
+import MainNav from "./components/MainNav";
+
+const App = () => {
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("jwt") !== null
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ToastContainer />;
+      <MainNav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Switch>
+        <Route path="/profile" component={MyProfilePage} />
+        <Route path="/users/:id" component={GeneralProfilePg} />
+        <Route exact path="/Homepage" component={Homepage} />
+        <Route exact path="/" component={Homepage} />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;

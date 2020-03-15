@@ -1,0 +1,15 @@
+Login UX
+
+User will fill in username password
+
+1st route
+If fields invalid, disable button
+
+
+2nd route
+users click on submit button
+- validate form fields
+  - if valid, sign in/sign up
+  - if invalid 
+     - show alert message, tell what went wrong
+     - and disable button
